@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Gandha | Software Engineer</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css for additional animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            /* Tech-Inspired Dark Theme */
+            --dark-bg: #0a0a14;
+            --dark-card-bg: rgba(18, 18, 30, 0.85);
+            --dark-text: #f0f0f0;
+            --dark-text-secondary: #b0b0d0;
+            --primary: #00d9ff;
+            --primary-light: #4de3ff;
+            --secondary: #9d4edd;
+            --accent: #ff6b6b;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            --gradient-horizontal: linear-gradient(90deg, var(--primary), var(--secondary));
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --neon-glow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+        
+        .light-mode {
+            /* Clean Light Theme */
+            --dark-bg: #f8f9ff;
+            --dark-card-bg: rgba(255, 255, 255, 0.9);
+            --dark-text: #1a1a2e;
+            --dark-text-secondary: #4a5568;
+            --primary: #00a8cc;
+            --primary-light: #00c6ff;
+            --secondary: #7b2cbf;
+            --accent: #ff4757;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            --gradient-horizontal: linear-gradient(90deg, var(--primary), var(--secondary));
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --neon-glow: 0 0 10px rgba(0, 168, 204, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+      body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+   
+
+@keyframes slideUpProfile {
+  from {
+    opacity: 0;
+    transform: translateY(120px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+        
+        @keyframes fadeInWelcome {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOutWelcome {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .content-section,
+.section-title,
+.glass-card,
+footer {
+  opacity: 1;
+  transform: none;
+}
+
+        .welcome-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+            padding: 20px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+            animation: floatParticle 20s infinite linear;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Content Reveal Animation */
+        .content-section {
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+      
+        
+        /* Main Content Styles */
+        h1, h2, h3, h4, h5, .logo, .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--neon-glow);
+            transition: all 0.4s ease;
+             background-color: rgba(10, 10, 20, 0.95);
+  backdrop-filter: blur(15px);
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--neon-glow);
+        }
+        
+     
+        
+        .light-mode .navbar {
+            background-color: rgba(248, 249, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 168, 204, 0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--dark-text) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            position: relative;
+            font-size: 1rem;
+            padding: 0.5rem 0 !important;
+            transition: none;
+              opacity: 1;
+  transform: none;
+        }
+        
+       
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 60px;
+            height: 30px;
+            background: var(--dark-card-bg);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid var(--glass-border);
+            overflow: hidden;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+       
+        
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--gradient);
+            border-radius: 50%;
+            top: 1px;
+            left: 2px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+        
+        .light-mode .theme-toggle::after {
+            transform: translateX(30px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+        }
+        
+        
+     .hero-content,
+.typing-text,
+.tagline,
+.hero-buttons {
+  opacity: 1;
+  transform: none;
+}
+
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Profile Image in Hero */
+      /* Updated Profile Image Animation */
+.profile-img-container {
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+  position: relative;
+  opacity: 1; /* Changed from 0 to 1 */
+  transform: translateY(100vh); /* Start from bottom of viewport */
+  transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1), 
+              opacity 0.5s ease;
+}
+
+.profile-img-container.show {
+  opacity: 1;
+  transform: translateY(0); /* End at normal position */
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid transparent;
+  background: linear-gradient(var(--dark-card-bg), var(--dark-card-bg)) padding-box,
+              var(--gradient) border-box;
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+}
+
+/* Optional float animation after slide-up */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.profile-img-container.show .profile-img {
+  animation: float 3s ease-in-out infinite 2s; /* Starts after slide-up */
+}
+        
+       
+        
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: var(--neon-glow);
+        }
+        
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+       
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+      
+        
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        /* Skills Bars */
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 3rem 0 2rem;
+            position: relative;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+       
+        
+        /* Social Icons */
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            color: var(--dark-text);
+            font-size: 1.3rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 0 0.5rem;
+            border: 1px solid var(--glass-border);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 2.5rem;
+                padding: 15px 25px;
+            }
+            
+            .typing-text {
+                font-size: 2.5rem;
+            }
+            
+            .profile-animation-img {
+                animation: scaleUpMobile 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+                         expandFullscreenMobile 1.5s 2.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+                         returnToPositionMobile 1.5s 3.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            }
+            
+            @keyframes scaleUpMobile {
+                0% {
+                    width: 5px;
+                    height: 5px;
+                    opacity: 0;
+                    transform: scale(0.1) rotate(0deg);
+                }
+                100% {
+                    width: 200px;
+                    height: 200px;
+                    opacity: 1;
+                    transform: scale(1) rotate(0deg);
+                }
+            }
+            
+            @keyframes returnToPositionMobile {
+                100% {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 50%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+  
+
+ 
+
+  
+
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">Dev Gandha</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <div class="theme-toggle" id="themeToggle"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <div class="hero-content text-center text-lg-start">
+                        <h1 class="typing-text">Dev Gandha</h1>
+                        <h2 class="h3 mb-3" style="opacity: 0; animation: fadeInUp 1s 8.6s forwards;">Software Engineer (Fresher)</h2>
+                        <p class="tagline">MCA student with strong programming skills and a keen interest in software development. Eager to apply academic knowledge in a real world environment and grow as an IT professional.</p>
+                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 hero-buttons">
+                            <a href="#projects" class="btn btn-primary-custom">View Projects</a>
+                            <a href="#contact" class="btn btn-outline-custom">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1 mb-5 mb-lg-0">
+                    <div class="profile-img-container">
+                        <img src="assets/dev-profile.jpg" 
+                             alt="Dev Gandha" 
+                             class="profile-img"
+                             id="mainProfileImg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Education</h3>
+                        <div class="mb-4">
+                            <h5>Master of Computer Application (MCA)</h5>
+                            <p class="text-primary mb-1">L.J. Institute of Engineering & Technology</p>
+                            <p class="text-muted">07/2024 - Present</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5>Bachelor of Computer Application (BCA)</h5>
+                            <p class="text-primary mb-1">H.J. Doshi Information Technology Institute</p>
+                            <p class="text-muted">06/2021 - 06/2024</p>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <h4 class="mb-4">Languages</h4>
+                            <div class="mb-3">
+                                <span class="d-block mb-1">English - Professional Working Proficiency</span>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar" style="width: 85%; background: var(--gradient);"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <span class="d-block mb-1">Gujarati - Native or Bilingual Proficiency</span>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar" style="width: 100%; background: var(--gradient);"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <span class="d-block mb-1">Hindi - Full Professional Proficiency</span>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar" style="width: 90%; background: var(--gradient);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card h-100">
+                        <h3 class="mb-4">Certificates</h3>
+                        <div class="mb-4">
+                            <h5 class="mb-2">Generative AI Fundamentals</h5>
+                            <p class="small mb-1">Google Cloud Skills Boost</p>
+                            <p class="mb-0">Introduced to Generative AI, large language models (LLMs), prompt engineering techniques, and ethical AI usage in practical scenarios</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="mb-2">The Bits and Bytes of Computer Networking</h5>
+                            <p class="small mb-1">Coursera</p>
+                            <p class="mb-0">Gained foundational knowledge of networking concepts including TCP/IP, DNS, HTTP, routing, and network troubleshooting</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="mb-2">Introduction to Software Engineering</h5>
+                            <p class="small mb-1">Coursera</p>
+                            <p class="mb-0">Learned core concepts of software development life cycle, requirement analysis, system design, and agile methodology</p>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Introduction to Software Testing</h5>
+                            <p class="small mb-1">Coursera</p>
+                            <p class="mb-0">Covered basic software testing types including unit, integration, and system testing along with test planning and bug tracking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Programming & Development</h3>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>C# & .NET</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Laravel PHP</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>HTML5 & CSS3</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>JavaScript</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Database & Tools</h3>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>MS SQL Server</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>MySQL</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Windows Forms</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Blade Templating</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="skill-bar-container" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                                <div class="skill-progress" data-width="78"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h5>Additional Skills:</h5>
+                            <div class="d-flex flex-wrap gap-2 mt-3">
+                                <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">MVC Architecture</span>
+                                <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">REST APIs</span>
+                                <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Git & GitHub</span>
+                                <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project -->
+    <section id="featured" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Project</h2>
+            </div>
+            <div class="featured-project glass-card p-4 p-md-5" style="border: 2px solid transparent; background: linear-gradient(var(--dark-card-bg), var(--dark-card-bg)) padding-box, var(--gradient) border-box;">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="mb-3">
+                            <span class="badge bg-success me-2">Windows Desktop</span>
+                            <span class="badge bg-primary">BCA Final Year Project</span>
+                        </div>
+                        <h3 class="mb-3">Pizza Restaurant Management System</h3>
+                        <p class="mb-4">Developed as part of the final-year BCA project, this Windows-based desktop application was built using C# and Windows Forms, featuring an admin panel to manage pizza orders efficiently.</p>
+                        <div class="project-tech mb-4">
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">C#</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">.NET Framework</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Windows Forms</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">MS SQL Server</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="text-center">
+                            <div class="mb-3">
+                                <i class="bi bi-laptop" style="font-size: 4rem; color: var(--primary);"></i>
+                            </div>
+                            <h5>Desktop Application</h5>
+                            <p class="small">Windows-based solution with intuitive interface for restaurant management and business insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Other Projects</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card glass-card p-4">
+                        <h4 class="mb-3">Tour Management System</h4>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Laravel</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">MySQL</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Blade</span>
+                        </div>
+                        <p class="mb-3">Web application developed as part of MCA academic project with admin panel for managing tour packages and user bookings.</p>
+                        <a href="#" class="btn btn-outline-custom btn-sm">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card glass-card p-4">
+                        <h4 class="mb-3">Student Management System</h4>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">C#</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Windows Forms</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">SQL Server</span>
+                        </div>
+                        <p class="mb-3">Desktop application for educational institutions to manage student records, attendance, and grades.</p>
+                        <a href="#" class="btn btn-outline-custom btn-sm">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card glass-card p-4">
+                        <h4 class="mb-3">E-Commerce Platform</h4>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">PHP</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">MySQL</span>
+                            <span class="tech-badge" style="background: rgba(0,217,255,0.1); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">JavaScript</span>
+                        </div>
+                        <p class="mb-3">Full-featured online shopping platform with product catalog, shopping cart, and user authentication.</p>
+                        <a href="#" class="btn btn-outline-custom btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="glass-card h-100 p-4">
+                        <h3 class="mb-4">Contact Information</h3>
+                        <div class="contact-info-item mb-4">
+                            <div class="contact-icon" style="width: 50px; height: 50px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: white;">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p class="mb-0">Ahmedabad, Gujarat, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item mb-4">
+                            <div class="contact-icon" style="width: 50px; height: 50px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: white;">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p class="mb-0">devgandha2@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item mb-4">
+                            <div class="contact-icon" style="width: 50px; height: 50px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: white;">
+                                <i class="bi bi-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p class="mb-0">+91 9727909333</p>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <h5 class="mb-3">Connect with me:</h5>
+                            <div class="d-flex">
+                                <a href="https://linkedin.com/in/devgandha" target="_blank" class="social-icon me-2">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-icon me-2">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                                <a href="mailto:devgandha2@gmail.com" class="social-icon">
+                                    <i class="bi bi-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="glass-card p-4">
+                        <h3 class="mb-4">Send a Message</h3>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control form-control-custom" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control form-control-custom" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-custom" placeholder="Subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control form-control-custom" rows="6" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <h3 class="logo">Dev Gandha</h3>
+                    <p class="mb-0">Software Engineer (Fresher) | MCA Student</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end">
+                        <a href="https://linkedin.com/in/devgandha" target="_blank" class="social-icon me-2">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon me-2">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="mailto:devgandha2@gmail.com" class="social-icon">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-3">
+                <p class="mb-0">© <span id="currentYear"></span> Dev Gandha. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+
+
+
+
+
+        // Wait for page to load
+       // Wait for page to load
+document.addEventListener('DOMContentLoaded', function() {
+    const profileContainer = document.querySelector('.profile-img-container');
+    const currentYear = document.getElementById('currentYear');
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Set current year
+    if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+    }
+    
+    // Start profile image animation after a small delay
+    setTimeout(() => {
+        if (profileContainer) {
+            profileContainer.classList.add('show');
+        }
+    }, 300); // Small delay for better visual effect
+    
+    // Create particles
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+        
+        for (let i = 0; i < 100; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+    }
+    
+    // Initialize particles
+    createParticles();
+    
+    // Theme Toggle
+    const savedTheme = localStorage.getItem('dev-portfolio-theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('dev-portfolio-theme', theme);
+        });
+    }
+    
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const name = contactForm.querySelector('input[placeholder="Your Name"]').value;
+            const email = contactForm.querySelector('input[placeholder="Your Email"]').value;
+            const subject = contactForm.querySelector('input[placeholder="Subject"]').value;
+            const message = contactForm.querySelector('textarea').value;
+            
+            const yourEmail = "devgandha2@gmail.com";
+            
+            const mailSubject = encodeURIComponent(subject || "Portfolio Inquiry - Dev Gandha");
+            
+            const mailBody = encodeURIComponent(
+`Hello Dev,
+
+I came across your portfolio and would like to connect regarding potential opportunities.
+
+────────────────────────────
+Contact Information
+────────────────────────────
+Name:   ${name}
+Email:  ${email}
+
+────────────────────────────
+Message
+────────────────────────────
+${message}
+
+────────────────────────────
+This message was sent via your portfolio contact form.`
+            );
+            
+            const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${yourEmail}&su=${mailSubject}&body=${mailBody}`;
+            
+            window.open(gmailURL, '_blank');
+            
+            // Show success message
+            alert('Thank you for your message! A new email draft has been opened in Gmail.');
+            
+            contactForm.reset();
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const navbarToggler = document.querySelector('.navbar-toggler');
+                    if (navbarToggler) {
+                        navbarToggler.click();
+                    }
+                }
+            }
+        });
+    });
+    
+    // Fix for navbar on scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.style.backdropFilter = 'blur(15px)';
+                navbar.style.boxShadow = 'var(--neon-glow)';
+            } else {
+                navbar.style.backdropFilter = 'blur(15px)';
+                navbar.style.boxShadow = 'var(--neon-glow)';
+            }
+        }
+    });
+    
+    // Animate skill bars on scroll
+    function animateSkillBars() {
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        skillBars.forEach(bar => {
+            const width = bar.getAttribute('data-width') || '0';
+            const isInViewport = bar.getBoundingClientRect().top < window.innerHeight;
+            
+            if (isInViewport) {
+                bar.style.width = width + '%';
+            }
+        });
+    }
+    
+    // Initialize skill bars
+    window.addEventListener('scroll', animateSkillBars);
+    window.addEventListener('load', animateSkillBars);
+});
+    </script>
+</body>
+</html>

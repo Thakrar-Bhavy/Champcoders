@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Khirsariya | Frontend Developer</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme Colors - Professional & Modern */
+            --dark-bg: #0f1117;
+            --dark-card-bg: rgba(25, 28, 38, 0.8);
+            --dark-text: #f8fafc;
+            --dark-text-secondary: #cbd5e1;
+            --primary: #4361ee;
+            --primary-light: #5a7dfe;
+            --secondary: #06d6a0;
+            --accent: #7209b7;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+        
+        .light-mode {
+            /* Light Theme Colors - Clean & Professional */
+            --dark-bg: #f8fafc;
+            --dark-card-bg: rgba(255, 255, 255, 0.85);
+            --dark-text: #1e293b;
+            --dark-text-secondary: #475569;
+            --primary: #4361ee;
+            --primary-light: #5a7dfe;
+            --secondary: #06d6a0;
+            --accent: #7209b7;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(15, 17, 23, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .light-mode .navbar {
+            background-color: rgba(248, 250, 252, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-link {
+            color: var(--dark-text) !important;
+            font-weight: 500;
+            margin: 0 0.8rem;
+            position: relative;
+            font-size: 1rem;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 50px;
+            height: 26px;
+            background: var(--dark-card-bg);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+            top: 2px;
+            left: 3px;
+            transition: transform 0.3s ease;
+        }
+        
+        .light-mode .theme-toggle::after {
+            transform: translateX(24px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(67, 97, 238, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(6, 214, 160, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(114, 9, 183, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            z-index: 1;
+        }
+        
+        .profile-img-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(var(--dark-card-bg), var(--dark-card-bg)) padding-box,
+                        var(--gradient) border-box;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .typing-text {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--dark-text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+        }
+        
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-primary-custom:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-outline-custom:hover {
+            background: rgba(67, 97, 238, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 5px;
+            background: var(--gradient);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        /* Glassmorphism Cards - Improved */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+            height: 100%;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border-color: rgba(67, 97, 238, 0.3);
+        }
+        
+        .light-mode .glass-card:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Skills Section */
+        .skill-item {
+            margin-bottom: 1.8rem;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .light-mode .skill-bar {
+            background: rgba(0, 0, 0, 0.08);
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        /* Project Cards */
+        .project-card {
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        .tech-badge {
+            background: rgba(67, 97, 238, 0.12);
+            color: var(--primary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            background: rgba(67, 97, 238, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Featured Project */
+        .featured-project {
+            border: 2px solid transparent;
+            background: linear-gradient(var(--dark-card-bg), var(--dark-card-bg)) padding-box,
+                        var(--gradient) border-box;
+        }
+        
+        /* Contact Form */
+        .form-control-custom {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .form-control-custom:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+            background: var(--dark-card-bg);
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.8rem;
+        }
+        
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.2rem;
+            font-size: 1.3rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(15, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .light-mode footer {
+            background-color: rgba(248, 250, 252, 0.95);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--dark-text-secondary);
+        }
+        
+        .mouse {
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--dark-text-secondary);
+            border-radius: 20px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .mouse::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 2px;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+        
+        @keyframes scroll {
+            0% { opacity: 1; top: 10px; }
+            100% { opacity: 0; top: 30px; }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Social Icons */
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin: 0 0.3rem;
+        }
+        
+        .social-icon:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .typing-text {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .typing-text {
+                font-size: 2.5rem;
+            }
+            
+            .profile-img-container {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .glass-card {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .typing-text {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .nav-link {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .navbar-collapse {
+                background: var(--dark-card-bg);
+                backdrop-filter: blur(15px);
+                border-radius: 16px;
+                padding: 1.5rem;
+                margin-top: 1rem;
+                border: 1px solid var(--glass-border);
+            }
+            
+            .hero {
+                padding-top: 100px;
+                padding-bottom: 60px;
+                text-align: center;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .profile-img-container {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 2rem;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+            
+            .btn-primary-custom, .btn-outline-custom {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-content .d-flex {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .typing-text {
+                font-size: 1.9rem;
+            }
+            
+            .profile-img-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">Yash Khirsariya</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <div class="theme-toggle" id="themeToggle"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <div class="hero-content text-center text-lg-start">
+                        <h1 class="typing-text">Yash Khirsariya</h1>
+                        <h2 class="h3 mb-3">Frontend Developer | Angular Specialist</h2>
+                        <p class="tagline">Building scalable, user-centric applications with clean architecture and modern web technologies. Focused on performance, usability, and maintainable code.</p>
+                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                            <a href="#projects" class="btn btn-primary-custom">View Projects</a>
+                            <a href="#contact" class="btn btn-outline-custom">Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1 mb-5 mb-lg-0">
+                    <div class="profile-img-container">
+    <img src="assets/profile.jpg" alt="Yash Khirsariya" class="profile-img">
+</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Frontend Developer</h3>
+                        <p class="mb-3">Frontend-focused Software Engineer with strong experience in Angular development and enterprise-scale applications. Skilled in building reusable components, integrating RESTful APIs, implementing role-based access control, and optimizing performance.</p>
+                        <p class="mb-3">Currently working at Augmented System on Angular-based projects with a focus on clean architecture and user-centric design.</p>
+                        <p>I enjoy transforming complex requirements into intuitive, responsive interfaces that deliver exceptional user experiences while maintaining code quality and scalability.</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="me-3">
+                                        <i class="bi bi-briefcase-fill" style="color: var(--primary); font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0">Experience</h5>
+                                        <p class="mb-0">Frontend Developer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="me-3">
+                                        <i class="bi bi-mortarboard-fill" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0">Education</h5>
+                                        <p class="mb-0">BCA, CGPA: 6.8</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card h-100">
+                        <h3 class="mb-4">Experience & Focus</h3>
+                        <div class="mb-4">
+                            <h5>Angular Development</h5>
+                            <p class="mb-0">Building enterprise-scale applications with Angular (v13+), focusing on reusable components, clean architecture, and optimal performance.</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5>UI/UX Implementation</h5>
+                            <p class="mb-0">Creating responsive, accessible interfaces using Bootstrap, Angular Material, and custom CSS with a focus on user experience.</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5>API Integration</h5>
+                            <p class="mb-0">Implementing RESTful API integrations with proper error handling, loading states, and data transformation.</p>
+                        </div>
+                        <div>
+                            <h5>Collaborative Development</h5>
+                            <p class="mb-0">Working closely with backend and design teams to deliver high-quality, user-friendly solutions that meet business requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Frontend Development</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>HTML5</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>CSS3</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>JavaScript</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>TypeScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Angular (v13+)</span>
+                                <span>87%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card">
+                        <h3 class="mb-4">Tools & Other Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Bootstrap</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Angular Material</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Git & GitHub</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>RESTful APIs</span>
+                                <span>83%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="83"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Responsive Design</span>
+                                <span>91%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="91"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h5>Additional Skills:</h5>
+                            <div class="d-flex flex-wrap gap-2 mt-2">
+                                <span class="tech-badge">VS Code</span>
+                                <span class="tech-badge">Chrome DevTools</span>
+                                <span class="tech-badge">Node.js Basics</span>
+                                <span class="tech-badge">Component Architecture</span>
+                                <span class="tech-badge">State Management</span>
+                                <span class="tech-badge">Role-Based Access</span>
+                                <span class="tech-badge">Performance Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project -->
+    <section id="featured" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Project</h2>
+            </div>
+            <div class="featured-project glass-card p-4 p-md-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="mb-3">
+                            <span class="badge bg-success me-2">Enterprise Project</span>
+                            <span class="badge bg-primary">Angular-Based</span>
+                        </div>
+                        <h3 class="mb-3">Case Management System</h3>
+                        <p class="mb-4">A comprehensive, scalable Case Management System built with Angular, covering modules like Company Management, Matters, Users, Documents, Bundling, Templates, Dashboard, and Reports. Implemented role-based access control with dynamic navigation driven by backend configuration.</p>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Multi-company support with theme switching</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Role-based access control</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Reusable components & services</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Document management system</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Dashboard with key metrics</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Optimized performance with lazy loading</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-tech mb-4">
+                            <span class="tech-badge">Angular</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Bootstrap</span>
+                            <span class="tech-badge">REST APIs</span>
+                            <span class="tech-badge">RxJS</span>
+                            <span class="tech-badge">Git</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="text-center">
+                            <div class="mb-3">
+                                <i class="bi bi-layers" style="font-size: 4rem; color: var(--primary);"></i>
+                            </div>
+                            <h5>Enterprise Architecture</h5>
+                            <p class="small">Scalable multi-module system with clean separation of concerns and reusable component architecture.</p>
+                            <div class="mt-4">
+                                <h6>Impact:</h6>
+                                <p class="small">Improved case tracking efficiency by 40% through intuitive UI and comprehensive reporting features.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Other Projects</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card glass-card p-4">
+                        <h4 class="mb-3">Niko Health</h4>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">Angular</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Bootstrap</span>
+                        </div>
+                        <p class="mb-3">Secure login with token-based authentication, advanced filterable search with server-side pagination, and robust file importer for bulk CSV/Excel uploads with validation.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary">Healthcare</span>
+                            <a href="#" class="btn btn-outline-custom btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card glass-card p-4">
+                        <h4 class="mb-3">Pac-Hub</h4>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">Angular</span>
+                            <span class="tech-badge">ngx-datatable</span>
+                            <span class="tech-badge">REST APIs</span>
+                        </div>
+                        <p class="mb-3">Dynamic player statistics modal displaying real-time multi-sport analytics with advanced search and filtering by athlete parameters. Optimized UI for efficient data analysis.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary">Sports Analytics</span>
+                            <a href="#" class="btn btn-outline-custom btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card glass-card p-4">
+                        <h4 class="mb-3">E-Commerce Dashboard</h4>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">Angular</span>
+                            <span class="tech-badge">Chart.js</span>
+                            <span class="tech-badge">Angular Material</span>
+                        </div>
+                        <p class="mb-3">Admin dashboard for e-commerce platform with sales analytics, inventory management, customer insights, and order processing. Real-time data visualization and reporting.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary">E-Commerce</span>
+                            <a href="#" class="btn btn-outline-custom btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="glass-card h-100 p-4">
+                        <h3 class="mb-4">Contact Information</h3>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p class="mb-0">Ahmedabad, Gujarat, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p class="mb-0">yashkhirsariya111@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p class="mb-0">+91 8799181564</p>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <h5 class="mb-3">Available for:</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="tech-badge">Frontend Development</span>
+                                <span class="tech-badge">Angular Projects</span>
+                                <span class="tech-badge">UI/UX Implementation</span>
+                                <span class="tech-badge">Full-time Opportunities</span>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <h5 class="mb-3">Connect with me:</h5>
+                            <div class="d-flex">
+                                <a href="#" class="social-icon me-2">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                                <a href="#" class="social-icon me-2">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="glass-card p-4">
+                        <h3 class="mb-4">Send a Message</h3>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control form-control-custom" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control form-control-custom" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-custom" placeholder="Subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control form-control-custom" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <h3 class="logo">Yash Khirsariya</h3>
+                    <p class="mb-0">Frontend Developer | Angular Specialist</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end">
+                        <a href="#" class="social-icon me-2">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="#" class="social-icon me-2">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-3 border-top border-secondary">
+                <p class="mb-0">© <span id="currentYear"></span> Yash Khirsariya. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('portfolio-theme', theme);
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Contact Form → Open Gmail with prefilled professional email draft
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const name = contactForm.querySelector('input[placeholder="Your Name"]').value;
+            const email = contactForm.querySelector('input[placeholder="Your Email"]').value;
+            const subject = contactForm.querySelector('input[placeholder="Subject"]').value;
+            const message = contactForm.querySelector('textarea').value;
+            
+            const yourEmail = "yashkhirsariya111@gmail.com";
+            
+            const mailSubject = encodeURIComponent(subject || "Portfolio Inquiry");
+            
+            const mailBody = encodeURIComponent(
+`Hello Yash,
+
+I came across your portfolio and would like to connect regarding potential opportunities.
+
+────────────────────────────
+Contact Information
+────────────────────────────
+Name:   ${name}
+Email:  ${email}
+
+────────────────────────────
+Message
+────────────────────────────
+${message}
+
+────────────────────────────
+This message was sent via your portfolio contact form.`
+            );
+            
+            const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${yourEmail}&su=${mailSubject}&body=${mailBody}`;
+            
+            window.open(gmailURL, '_blank');
+            
+            // Show success message
+            alert('Thank you for your message! A new email draft has been opened in Gmail.');
+            
+            contactForm.reset();
+        });
+        
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate skill bars when skills section is visible
+                    if (entry.target.id === 'skills') {
+                        const skillBars = document.querySelectorAll('.skill-progress');
+                        skillBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, 300);
+                        });
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeElements.forEach(el => observer.observe(el));
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const navbarToggler = document.querySelector('.navbar-toggler');
+                        navbarToggler.click();
+                    }
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Initialize skill bars with 0 width
+        document.querySelectorAll('.skill-progress').forEach(bar => {
+            bar.style.width = '0%';
+        });
+        
+        // Add animation to tech badges on hover
+        document.querySelectorAll('.tech-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
